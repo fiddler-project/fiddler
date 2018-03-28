@@ -4,7 +4,7 @@ from abc import ABCMeta, abstractmethod
 
 class Preprocessor(object):
     """ Parent preprocessor abstract class """
-    __meta__ = ABCMeta
+    __metaclass__ = ABCMeta
 
     def __init__(self, data_path):
         """ `data_path` is path to the json file containing raw data """
