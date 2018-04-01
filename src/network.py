@@ -100,8 +100,8 @@ class RNN(object):
                                                          self.y: y,
                                                          self.init_state: state})
                     losses += loss
-                    # sys.stdout.write(" Steps {} \r".format(step))
-                    # sys.stdout.flush()
+                    sys.stdout.write(" Steps {} \r".format(step))
+                    sys.stdout.flush()
                 print "Avg. loss for Epoch {}: {}".format(
                     epoch, losses / (step + 1))
                 if test_output:
