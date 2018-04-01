@@ -94,13 +94,13 @@ class RNN(object):
                 losses = 0.0
                 print "Training: Epoch {}".format(epoch)
                 for step, data in enumerate(self.data.batch()):
-                    x, y = data
+                    x, y, epoch_size = data
                     loss, _, state = sess.run([self.loss, self.train_step, self.state],
                                               feed_dict={self.x: x,
                                                          self.y: y,
                                                          self.init_state: state})
                     losses += loss
-                    sys.stdout.write(" Steps {} \r".format(step))
+                    sys.stdout.write(" Steps {}/{} \r".format(step, epoch_size))
                     sys.stdout.flush()
                 print "Avg. loss for Epoch {}: {}".format(
                     epoch, losses / (step + 1))

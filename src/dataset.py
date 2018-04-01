@@ -30,4 +30,4 @@ class Dataset(object):
         for i in xrange(epoch_size):
             x, y = data[:, i * self.num_steps:(i + 1) * self.num_steps], \
                 data[:, i * self.num_steps + 1: (i + 1) * self.num_steps + 1]
-            yield x, y
+            yield x, y, epoch_size
