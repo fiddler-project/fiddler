@@ -6,32 +6,33 @@ import sys
 
 class RNN(object):
 
-    def __init__(self, producer, data, batch_size, lstm_size, num_layers=2, num_steps=30,
-                 num_classes=10000, num_epochs=50, learning_rate=1e-4):
-        self.producer, self.data = producer, data
-        self.batch_size = batch_size
-        # Dimensions for each RNN cell's parameters (i.e. c and h)
+    def __init__(self, data, lstm_size, num_layers=2, num_epochs=50, learning_rate=1e-4):
+        """
+        `data` is dataset.Dataset object
+        `lstm_size` is the Dimensions for each RNN cell's parameters (i.e. c and h)
+        `num_layers` is number of layers in the network
+        `num_epochs` is total number of epochs training is to be run for
+        `learning_rate` is learning rate for gradient optimizer
+        """
+        self.data = data
+        self.batch_size = self.data.batch_size
         self.lstm_size = lstm_size
-
         self.num_layers = num_layers
-
-        # number of time steps for training (aka unrolling!)
-        self.num_steps = num_steps
-
-        # number of classes to predict
-        self.num_classes = num_classes
+        self.num_steps = self.data.num_steps
+        self.num_classes = self.data.vocab_size
         self.learning_rate = learning_rate
         self.num_epochs = num_epochs
 
         self.x = tf.placeholder(tf.int32, shape=(
-            self.batch_size, self.num_steps))
+            None, None))
         self.y = tf.placeholder(tf.int32, shape=(
-            self.batch_size, self.num_steps))
+            None, None))
 
         # The second value for dimension depicts separate states for c and h
         # of a cell in RNN. Therefore, it is hardcoded as 2.
         self.init_state = tf.placeholder(
-            tf.float32, [self.num_layers, 2, self.batch_size, self.lstm_size])
+            tf.float32, [self.num_layers, 2, None, self.lstm_size])
+        self.final_state = None
 
     def _build(self):
         """ Build the network """
@@ -72,8 +73,14 @@ class RNN(object):
             tf.nn.sparse_softmax_cross_entropy_with_logits(logits=class_probs, labels=labels))
         self.train_step = tf.train.AdamOptimizer(
             self.learning_rate).minimize(self.loss)
+        # get the prediction accuracy
+        self.softmax_out = tf.nn.softmax(
+            tf.reshape(class_probs, [-1, self.num_classes]))
+        self.predict = tf.cast(tf.argmax(self.softmax_out, axis=1), tf.int32)
+        correct_prediction = tf.equal(self.predict, labels)
+        self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-    def train(self):
+    def train(self, test_output=True):
         # build network
         self._build()
 
@@ -86,14 +93,55 @@ class RNN(object):
             for epoch in xrange(self.num_epochs):
                 losses = 0.0
                 print "Training: Epoch {}".format(epoch)
-                for step, data in enumerate(self.producer(self.data, self.batch_size, self.num_steps)):
+                for step, data in enumerate(self.data.batch()):
                     x, y = data
                     loss, _, state = sess.run([self.loss, self.train_step, self.state],
                                               feed_dict={self.x: x,
                                                          self.y: y,
                                                          self.init_state: state})
                     losses += loss
-                    sys.stdout.write(" Steps {} \r".format(step))
-                    sys.stdout.flush()
-                print "Avg. loss for Epoch {}: {}".format(epoch, losses / (step + 1))
+                    # sys.stdout.write(" Steps {} \r".format(step))
+                    # sys.stdout.flush()
+                print "Avg. loss for Epoch {}: {}".format(
+                    epoch, losses / (step + 1))
+                if test_output:
+                    print "---------- Generated text -----------"
+                    print self.gen_text(sess)
+
             saver.save(sess, "models/lstm-final")
+
+    def gen_text(self, sess, seed_input=None, size=500):
+        text = ""
+        if not seed_input:
+            seed_input = self.data.idx_to_vocab[
+                np.random.randint(0, self.data.vocab_size - 1)]
+        test_input = [self.data.vocab_to_idx[c] for c in seed_input]
+        for i in range(len(test_input)):
+            x = np.array([test_input[i]])
+            x = x.reshape((1, 1))
+            out = self.predict_(x, sess, i == 0)[0]
+
+        for i in range(size):
+            element = np.random.choice(range(self.data.vocab_size), p=out)
+            text += self.data.idx_to_vocab[element]
+            x = np.array([element])
+            x = x.reshape((1, 1))
+            out = self.predict_(x, sess, False)[0]
+        return text
+
+    def predict_(self, x, sess, init_zero_state=True):
+        if init_zero_state:
+            print self.num_layers
+            init_value = np.zeros(
+                (self.num_layers, 2, 1, self.lstm_size))
+        else:
+            init_value = self.final_state
+        out, state = sess.run(
+            [self.softmax_out, self.state],
+            feed_dict={
+                self.x: x,
+                self.init_state: init_value
+            }
+        )
+        self.final_state = state
+        return out
