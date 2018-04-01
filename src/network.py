@@ -80,7 +80,7 @@ class RNN(object):
         correct_prediction = tf.equal(self.predict, labels)
         self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-    def train(self, test_output=True):
+    def train(self, test_output=True, test_seed=None):
         # build network
         self._build()
 
@@ -106,15 +106,15 @@ class RNN(object):
                     epoch, losses / (step + 1))
                 if test_output:
                     print "---------- Generated text -----------"
-                    print self.gen_text(sess)
+                    print self.gen_text(sess, seed_input=test_seed)
 
             saver.save(sess, "models/lstm-final")
 
     def gen_text(self, sess, seed_input=None, size=500):
-        text = ""
         if not seed_input:
             seed_input = self.data.idx_to_vocab[
                 np.random.randint(0, self.data.vocab_size - 1)]
+        text = seed_input
         test_input = [self.data.vocab_to_idx[c] for c in seed_input]
         for i in range(len(test_input)):
             x = np.array([test_input[i]])

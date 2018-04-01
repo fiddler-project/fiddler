@@ -23,8 +23,9 @@ def main():
               help="No. of epochs to run training for")
 @click.option("--cell", "-c", type=click.Choice(['lstm', 'gru']),
               default="lstm", help="Type of cell used in RNN")
-def train_rnn(file, batch_size, num_steps, lstm_size, epochs, cell):
+@click.option("--test-seed", "-t", help="Seed input for printing predicted text after each training step")
+def train_rnn(file, batch_size, num_steps, lstm_size, epochs, cell, test_seed):
     """ Train neural network """
     ds = Dataset(file, batch_size=batch_size, num_steps=num_steps)
     n = RNN(data=ds, lstm_size=lstm_size, num_epochs=epochs)
-    n.train()
+    n.train(test_seed=test_seed)
