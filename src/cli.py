@@ -19,8 +19,11 @@ def main():
 @click.option("--batch-size", "-b", type=click.INT, help="Batch size")
 @click.option("--num-steps", "-n", type=click.INT, help="No. of time steps in RNN")
 @click.option("--lstm-size", "-l", type=click.INT, help="Dimension of lstm states")
-@click.option("--epochs", "-e", type=click.INT, help="No. of epochs to run training for")
-def train_nn(file, batch_size, num_steps, lstm_size, epochs):
+@click.option("--epochs", "-e", type=click.INT,
+              help="No. of epochs to run training for")
+@click.option("--cell", "-c", type=click.Choice(['lstm', 'gru']),
+              default="lstm", help="Type of cell used in RNN")
+def train_rnn(file, batch_size, num_steps, lstm_size, epochs, cell):
     """ Train neural network """
     ds = Dataset(file, batch_size=batch_size, num_steps=num_steps)
     n = RNN(data=ds, lstm_size=lstm_size, num_epochs=epochs)
