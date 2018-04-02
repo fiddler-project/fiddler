@@ -1,0 +1,13 @@
+README.md
+setup.py
+fiddler.egg-info/PKG-INFO
+fiddler.egg-info/SOURCES.txt
+fiddler.egg-info/dependency_links.txt
+fiddler.egg-info/entry_points.txt
+fiddler.egg-info/top_level.txt
+src/__init__.py
+src/cli.py
+src/crawler.py
+src/dataset.py
+src/network.py
+src/preprocessor.py
