@@ -25,12 +25,12 @@ class Dataset(object):
         if not with_delim:
             self.data = [self.vocab_to_idx[c] for c in raw_data]
         else:
-            tunes = raw_data.split('\n\n')
+            tunes = map(lambda s: s.strip(), raw_data.split('\n\n'))
+            self.data = []
             for t in tunes:
-                self.data.append(self.vocab_to_idx[start_symbol])
-                self.data.append([self.vocab_to_idx[c] for c in t])
-                self.data.append(self.vocab_to_idx[end_symbol])
-
+                self.data += [self.vocab_to_idx[start_symbol]] + \
+                             [self.vocab_to_idx[c] for c in t] + \
+                             [self.vocab_to_idx[end_symbol]]
         del raw_data
         self.batch_size = batch_size
         self.num_steps = num_steps
@@ -45,7 +45,7 @@ class Dataset(object):
         epoch_size = (batch_len - 1) // self.num_steps
         for i in xrange(epoch_size):
             x, y = data[:, i * self.num_steps:(i + 1) * self.num_steps], \
-                data[:, i * self.num_steps + 1: (i + 1) * self.num_steps + 1]
+                    data[:, i * self.num_steps + 1: (i + 1) * self.num_steps + 1]
             yield x, y, epoch_size
 
 
