@@ -6,17 +6,18 @@ import sys
 
 class RNN(object):
 
-    def __init__(self, data, lstm_size, num_layers=2, num_epochs=50, learning_rate=1e-4):
+    def __init__(self, data, cell, cell_size, num_layers=2, num_epochs=50, learning_rate=1e-3):
         """
         `data` is dataset.Dataset object
-        `lstm_size` is the Dimensions for each RNN cell's parameters (i.e. c and h)
+        `cell_size` is the Dimensions for each RNN cell's parameters (i.e. c and h)
         `num_layers` is number of layers in the network
         `num_epochs` is total number of epochs training is to be run for
         `learning_rate` is learning rate for gradient optimizer
         """
         self.data = data
         self.batch_size = self.data.batch_size
-        self.lstm_size = lstm_size
+        self.cell = cell
+        self.cell_size = cell_size
         self.num_layers = num_layers
         self.num_steps = self.data.num_steps
         self.num_classes = self.data.vocab_size
@@ -29,43 +30,52 @@ class RNN(object):
             None, None))
 
         # The second value for dimension depicts separate states for c and h
-        # of a cell in RNN. Therefore, it is hardcoded as 2.
-        self.init_state = tf.placeholder(
-            tf.float32, [self.num_layers, 2, None, self.lstm_size])
+        # of a LSTM cell in RNN. Therefore, it is hardcoded as 2.
+        # GRU cell in RNN has a single state
+        if self.cell == "lstm":
+            self.init_state = tf.placeholder(
+                tf.float32, [self.num_layers, 2, None, self.cell_size])
+        else:
+            self.init_state = tf.placeholder(
+                tf.float32, [self.num_layers, None, self.cell_size])
         self.final_state = None
 
     def _build(self):
         """ Build the network """
         embedding_params = tf.get_variable(
-            'embedding_matrix', [self.num_classes, self.lstm_size])
+            'embedding_matrix', [self.num_classes, self.cell_size])
         rnn_input = tf.nn.embedding_lookup(embedding_params, self.x)
 
-        # Each tensor will be of shape (2, self.batch_size, self.lstm_size)
+        # Each tensor will be of shape (2, self.batch_size, self.cell_size) - LSTM
+        # Each tensor will be of shape (self.batch_size, self.cell_size) - GRU
         # since axis = 0
         state_per_layer = tf.unstack(self.init_state, axis=0)
 
-        # Crate LSTM state tuples for each layer using `state_per_layer`
-        rnn_states = tuple(
+        # Create the RNN cells
+        if self.cell == "lstm":
+            rnn_states = tuple(
             [tf.contrib.rnn.LSTMStateTuple(state_per_layer[i][0], state_per_layer[i][1])
-             for i in range(self.num_layers)]
-        )
-
-        single_cell = tf.nn.rnn_cell.LSTMCell(self.lstm_size, forget_bias=1.0)
-        multi_cell = tf.nn.rnn_cell.MultiRNNCell([single_cell for _ in xrange(self.num_layers)],
+             for i in range(self.num_layers)])
+            single_cell = tf.nn.rnn_cell.LSTMCell(self.cell_size, forget_bias=1.0)
+            multi_cell = tf.nn.rnn_cell.MultiRNNCell([single_cell for _ in xrange(self.num_layers)],
                                                  state_is_tuple=True)
+        else:
+            rnn_states = tuple([state_per_layer[i] for i in range(self.num_layers)])
+            single_cell = tf.nn.rnn_cell.GRUCell(self.cell_size)
+            multi_cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * self.num_layers)
 
         # Update `state` after each training step
         output, self.state = tf.nn.dynamic_rnn(multi_cell, rnn_input, dtype=tf.float32,
                                                initial_state=rnn_states)
 
-        # Output from lstm has shape (2, self.batch_size, self.lstm_size)
+        # Output from lstm has shape (2, self.batch_size, self.cell_size)
         # In order to use it for softmax layer, we have to reshape it!
-        output = tf.reshape(output, (-1, self.lstm_size))
+        output = tf.reshape(output, (-1, self.cell_size))
         self._add_softmax_layer(output)
 
     def _add_softmax_layer(self, output):
         w_softmax = tf.Variable(tf.random_uniform(
-            (self.lstm_size, self.num_classes), -1, 1))
+            (self.cell_size, self.num_classes), -1, 1))
         b_softmax = tf.Variable(tf.random_uniform([self.num_classes], -1, 1))
         class_probs = tf.nn.xw_plus_b(output, w_softmax, b_softmax)
         labels = tf.reshape(self.y, [-1])  # Flatten `self.y`
@@ -88,8 +98,11 @@ class RNN(object):
         with tf.Session() as sess:
             saver = tf.train.Saver()
             sess.run(tf.global_variables_initializer())
-            state = np.zeros(
-                (self.num_layers, 2, self.batch_size, self.lstm_size))
+
+            if self.cell == "lstm":
+                state = np.zeros((self.num_layers, 2, self.batch_size, self.cell_size))
+            else:
+                state = np.zeros((self.num_layers, self.batch_size, self.cell_size))
             for epoch in xrange(self.num_epochs):
                 losses = 0.0
                 print "Training: Epoch {}".format(epoch)
@@ -108,9 +121,9 @@ class RNN(object):
                     print "---------- Generated text -----------"
                     print self.gen_text(sess, seed_input=test_seed)
 
-            saver.save(sess, "models/lstm-final")
+            saver.save(sess, "models/"+self.cell+"-final")
 
-    def gen_text(self, sess, seed_input=None, size=500):
+    def gen_text(self, sess, seed_input=None, size=300):
         if not seed_input:
             seed_input = self.data.idx_to_vocab[
                 np.random.randint(0, self.data.vocab_size - 1)]
@@ -120,22 +133,22 @@ class RNN(object):
             x = np.array([test_input[i]])
             x = x.reshape((1, 1))
             out = self.predict_(x, sess, i == 0)[0]
-
+        gen = [text]    
         for i in range(size):
             element = np.random.choice(range(self.data.vocab_size), p=out)
-            text += self.data.idx_to_vocab[element]
+            gen.append(self.data.idx_to_vocab[element])
             x = np.array([element])
             x = x.reshape((1, 1))
             out = self.predict_(x, sess, False)[0]
-        return text
+        return "".join(gen)
 
     def predict_(self, x, sess, init_zero_state=True):
-        if init_zero_state:
-            print self.num_layers
-            init_value = np.zeros(
-                (self.num_layers, 2, 1, self.lstm_size))
-        else:
+        if not init_zero_state:
             init_value = self.final_state
+        elif self.cell == "lstm":
+            init_value = np.zeros((self.num_layers, 2, 1, self.cell_size))
+        else:
+            init_value = np.zeros((self.num_layers, 1, self.cell_size))
         out, state = sess.run(
             [self.softmax_out, self.state],
             feed_dict={

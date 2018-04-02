@@ -1,0 +1,124 @@
+T:'G Iomain Nan Gamhna
+M:9/8
+K:Cmaj
+G E E E 2 D E D C | G E E E F G A B c | G E E E 2 D E D C | A D D G E C D 2 A | G E E E 2 D E D C | G E E E F G A B c | G E E E 2 D E D C | A D D G E C D 2 D | E D E c 2 A B A G | E D E A /2 B /2 c A B 2 D | E D E c 2 A B A G | A D D D E G A 2 D | E D E c 2 A B A G | E D E A /2 B /2 c A B 2 B | G A B c B A B A G | A D D D E G A B c |
+
+T:'S Daor An Tabac
+M:4/4
+K:Cmin
+f B B c f B c c | f B B c a f e c | f B B c f B c c | A 2 B c a f e c | f B B c f B c c | f B B c a f e c | f B B c f B c c | A 2 B c a f e c | f 3 e f g a 2 | f 3 g a f e c | f 3 e f g a 2 | A 2 B c a f e c | f 3 e f g a 2 | f 3 g a f e c | f g a b a f a 2 | A B c A a f e c |
+
+T:100 Watt Reels
+M:4/4
+K:Cdor
+c C C /2 C /2 C G C C /2 C /2 C | c C C /2 C /2 C B 2 A B | c C C /2 C /2 C G F =E G | F D B, D F G A B | c C C /2 C /2 C G C C /2 C /2 C | c C C /2 C /2 C B 2 A B | c A A G A c B G | F D B, D F G A B | c C C /2 C /2 C G C C /2 C /2 C | c C C /2 C /2 C B 2 A B | c C C /2 C /2 C G F =E G | F D B, D F G A B | c C C /2 C /2 C G C C /2 C /2 C | c C C /2 C /2 C B 2 A B | c A A G A c B G | F D B, D F 2 _E F | G 2 E G C G E G | G F G A B 2 A B | G 2 E G C G E G | F 2 D F B, F D F | G 2 [ G 2 E 2 ] [ G 2 C 2 ] [ G E ] G | G F G A B 2 A B | c A A G A c B G | F D B, D F 2 E F | G 2 E G C G E G | G F G A B 2 A B | G 2 E G C G E G | F 2 D F B, F D F | G 2 [ G 2 E 2 ] [ G 2 C 2 ] [ G E ] G | G F G A B 2 A B | c A A G A c B G | F D B, D F 2 x 2 | [ g e ] c c /2 c /2 c g c [ e c ] c | c /2 c /2 c e c g c [ e c ] c | [ d =B ] =B =B /2 =B /2 =B d =B [ f d ] =B | d =B [ f d ] =B d =B [ f d ] =B | [ e c ] c c /2 c /2 c g c [ e c ] c | c /2 c /2 c e c g c [ e c ] c | [ d =B ] =B =B /2 =B /2 =B d =B [ f d ] =B | d =B [ d =B ] =B [ e 2 c 2 ] x 2 | [ g 3 e 3 ] [ e c ] g c [ e c ] c | c /2 c /2 c e c g c [ e c ] c | [ f d ] =B =B /2 =B /2 =B d =B [ f d ] =B | d =B [ f d ] =B d =B [ f d ] =B | [ g e ] c c /2 c /2 c g c [ e c ] c | c /2 c /2 c e c g c [ e c ] c | [ f d ] =B =B /2 =B /2 =B d =B [ f d ] =B | d =B [ d =B ] =B [ e 2 c 2 ] x 2 | g 2 G G e 2 G G | c 2 G G _B 2 A B | G 2 E G C G E G | F 2 D F B, F D F | G 2 [ G 2 E 2 ] [ G 2 C 2 ] [ G E ] G | G F G A B 2 A B | c A A G A c B G | F D B, D F 2 E F | G 2 E G C G E G | G F G A B 2 A B | G 2 E G C G E G | F 2 D F B, F D F | G 2 [ G 2 E 2 ] [ G 2 C 2 ] [ G E ] G | G F G A B 2 A B | c A A G A c B G | F D B, D F G A B |
+
+T:10th Bat Crossing Rhine
+M:6/8
+K:Cmix
+c f 3/2 a /2 c f 2 | a a 3/2 b /2 c' a 3/2 g /2 | f e 2 g c 3/2 e /2 | g g 3/2 a /2 b a 3/2 g /2 | f f 3/2 a /2 c f 2 | a a 3/2 b /2 c' a 3/2 g /2 | f e 2 g c 3/2 e /2 | g 2< f 2 f 2 | c f 3/2 a /2 c f 2 | a a 3/2 b /2 c' a 3/2 g /2 | f e 2 g c 3/2 e /2 | g g 3/2 a /2 b a 3/2 g /2 | f f 3/2 a /2 c f 2 | a a 3/2 b /2 c' a 3/2 g /2 | f e 2 g c 3/2 e /2 | g 2< f 2 f 2 | b c' 2 a f 2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g g 3/2 a /2 b a 3/2 g /2 | f c' 2 a f 2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g 2< f 2 f 2 | b c' 2 a f 2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g g 3/2 a /2 b a 3/2 g /2 | f c' 2 a f 2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g 2< f 2 f 2 | c 2< f 2 c 3/2 f /2 | a a < c' a a 3/2 g /2 | f 2< e 2 c 3/2 e /2 | g g 3/2 a /2 b a 3/2 g /2 | f 2< f 2 c 3/2 f /2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g 2< f 2 f 2 | c 2< f 2 c 3/2 f /2 | a a < c' a a 3/2 g /2 | f 2< e 2 c 3/2 e /2 | g g 3/2 a /2 b a 3/2 g /2 | f 2< f 2 c 3/2 f /2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g 2< f 2 f 2 | b c' 2 c' c 3/2 f /2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g g 3/2 a /2 b a 3/2 g /2 | f c' 2 c' c 3/2 f /2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g 2< f 2 f 2 | b c' 2 c' c 3/2 f /2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g g 3/2 a /2 b a 3/2 g /2 | f c' 2 c' c 3/2 f /2 | a a < c' a a 3/2 g /2 | f e 2 g c 3/2 e /2 | g 2< f 2 f 2 |
+
+T:10th Bat Crossing Rhine
+M:6/8
+K:Cmix
+f > a c f 2 a | a > b c' a > g f | e 2 g c > e g | g > a b a > g f | f > a c f 2 a | a > b c' a > g f | e 2 g c > e g | f 3 f 2 f | f /2 a /2 c f 2 a a | a /2 b /2 c' a > g f e | e g c > e g g | g /2 a /2 b a > g f f | f /2 a /2 c f 2 a a | a /2 b /2 c' a > g f e | e g c > e g f | f 2 f 2 c' 2 | a f 2 a a < c' | a a > g f e 2 | g c > e g g > a | b a > g f c' 2 | a f 2 a a < c' | a a > g f e 2 | g c > e g f 2 | f f 2 c' 2 a | f 2 a a < c' a | a > g f e 2 g | c > e g g > a b | a > g f c' 2 a | f 2 a a < c' a | a > g f e 2 g | c > e g 2< f 2 | f 2 f 3 c | c /2 (3 f a a c' 3/2 a a | a /2 g /2 f 2< e 2 c | c /2 e /2 g g > a b a | a /2 g /2 f 2< f 2 c | c /2 (3 f a a c' 3/2 a a | a /2 g /2 f e 2 g c | c /2 e /2 g 2< f 2 f | f f 3 c > f | a a < c' a a > g | f 2< e 2 c > e | g g > a b a > g | f 2< f 2 c > f | a a < c' a a > g | f e 2 g c > e | g 2< f 2 f 2 | c' 2 c' c > f a | a 2< c' 2 a a | a /2 g /2 f e 2 g c | c /2 e /2 g g > a b a | a /2 g /2 f c' 2 c' c | c /2 f /2 a a 2< c' 2 | a a > g f e 2 | g c > e g f 2 | f f 2 c' 2 c' | c > f a a c' 2 | c' a a > g f e | e g c > e g g | g /2 a /2 b a > g f c' | c' c' c > f a a | c' 3 a a > g | f e 2 g c > e | g 2< f 2 f 2 |
+
+T:10th Bat Crossing Rhine
+M:6/8
+K:Cmaj
+c < e G c 2 G | e > f g e d c | B < d G B 2 d | d > e f e d c | c < e G c 2 G | e > f g e d c | B > d g f > d B | c 3 c 2 c /2 e /2 | e G c 2 G e | e /2 f /2 g e d c B /2 d /2 | d G B 2 d d | d /2 e /2 f e d c c /2 e /2 | e G c 2 G e | e /2 f /2 g e d c B | B /2 d /2 g f > d B c | c 2 c 2 g < G | e c 2 G e < g | e e d c B < d | G B 2 d d > e | f e d c g < G | e c 2 G e < g | e e d c B > d | g f > d B c 2 | c c 2 g < G e | c 2 G e < g e | e d c B < d G | B 2 d d > e f | e d c g < G e | c 2 G e < g e | e d c B > d g | f > d B 2< c 2 | c 2 c 3 G | G /2 (3 c e e g 3/2 e e | d c B < d G B | B d d > e f e | d c 2< c 2 G | G /2 (3 c e e g 3/2 e e | d c B > d g f | f /2 d /2 B 2< c 2 c | c c 3 G > c | e e < g e e d | c B < d G B 2 | d d > e f e d | c 2< c 2 G > c | e e < g e e d | c B > d g f > d | B 2< c 2 c 2 | g < G g G > c e | e < g e e d c | B < d G B 2 d | d > e f e d c | g < G g G > c e | e < g e e d c | B > d g f > d B | c 3 c 2 g /2 G /2 | G g G > c e e /2 g /2 | g e e d c B /2 d /2 | d G B 2 d d | d /2 e /2 f e d c g /2 G /2 | G g G > c e e /2 g /2 | g e e d c B | B /2 d /2 g f > d B c | c 2 c 2
+
+T:1st August
+M:4/4
+K:Cdor
+B, C C C E C E F | G 3 G G F E G | F F F G F E D E | (3 G A c B G F E D F | B, C C C E C E F | G 3 G G F E G | F F F G F E D E | C E F C E F C E | B, C C C E C E F | G 3 G G F E G | F F F G F E D E | (3 G A c B G F E D F | B, C C C E C E F | G 3 G G F E G | F F F G F E D E | C E F E F G A B | c d e c d c B G | c 3 B G F E D | C E E E F 2 F F | G 2 G B G F E D | C E E E F E E E | (3 G A c B G F E D E | C D E G F E D F | E E E D E 2 G B | c d e c d c B G | c 3 B G F E D | C E E E F 2 F F | G 2 G B G F E D | C E E E F E E E | (3 G A c B G F E D E | C D E G F E D F | E E E D E 2 C E |
+
+T:1st August
+M:4/4
+K:Cdor
+B, 2< C 2 E B, C E | F 2< G 2 G F E G | (3 G G F F G F E C F | (3 G B c B G F E C F | E 2< C 2 E B, C E | F 2< G 2 G F E G | (3 G G F F G F E C B, | C E F C E F C E | B, 2< C 2 E B, C E | F 2< G 2 G F E G | (3 G G F F G F E C F | (3 G B c B G F E C F | E 2< C 2 E B, C E | F 2< G 2 G F E G | (3 G G F F G F E C B, | C E F E F G B c | d e f e d c B G | c 3 B G F E B, | C 2< E 2 F 2 E F | G 3 B G F E B, | C 2< E 2 F 2< E 2 | (3 G B c B G F E C E | B, C E G F =E F G | _E 2 E D E 2 (3 F g B | d e f e d c B G | c 3 B G F E B, | C 2< E 2 F 2 E F | G 3 B G F E B, | C 2< E 2 F 2< E 2 | (3 G B c B G F E C E | B, C E G F =E F G | _E 2 E D E G D E |
+
+T:249 To Wigton
+M:6/8
+K:Cmin
+G c d e 2 c | B G G B G G | G c d e 2 e | d g f d c c | G c d e 2 c | B G G B G G | c 3 B G F | E C C 2< C 2 | G c d e 2 c | B G G B G G | G c d e 2 e | d g f d c c | G c d e 2 c | B G G B G G | c 3 B G F | E C C 2< C 2 | e c c e c c | d G G d G G | G c d e 2 e | d g f d c c | e c c e c c | d G G d G G | c 3 B G F | E C C 2< C 2 | e c c e c c | d G G d G G | G c d e 2 e | d g f d c c | e c c e c c | d G G d G G | c 3 B G F | E C C 2< C 2 |
+
+T:250 To Vigo
+M:4/4
+K:Cmin
+g c c B c e G A | A c e c B d f d | g c c B c e G A | A c c e d c c 2 | g c c B c e G A | A c e c B d (3 f g a | g 2 c B c e G A | A c g f e f g a | b g g f e f d e | e f d e f e (3 d c B | b g g f e f d e | e g b c' g f f 2 | b g g f e f d e | e f d e f e (3 d c B | g 2 c B c e d e | e f d e f e (3 d c B | d G G d e A A e | d G G f e c c 2 | d G G d e A A 2 | e g f d e c c 2 | g c c B c e G A | A c e c B d f d | g c c B c e G A | A c c e d c c 2 | g c c B c e G A | A c e c B d (3 f g a | g 2 c B c e G A | A c g f e f g a | b g g f e f d e | e f d e f e (3 d c B | b g g f e f d e | e g b c' g f f 2 | b g g f e f d e | e f d e f e (3 d c B | g 2 c B c e d e | e f d e f e (3 d c B | d G G d e A A e | d G G f e c c 2 | d G G d e A A 2 | e g f d e f g a | b g g e d b c d | d B c d e d c B | b g g e d b c d | d g b c' g f f 2 |
+
+T:250 To Vigo
+M:4/4
+K:Cmin
+g c c B c e G A | A c e c B d f d | g c c B c e G A | A B c e d c c /2 c /2 c | g c c B c e G A | A c e c d e f a | g c c B c e G A | A c g f e c c B | b g g f e f d e | e f d e f e d /2 c /2 B | b g g f e f d e | e g b g g f f g | b g g f e f d e | e f d e f e d /2 c /2 B | g c c B c g d e | e g f d e d c B | g c c B c e G A | A c e c B d f d | g c c B c e G A | A B c e d c c /2 c /2 c | g c c B c e G A | A c e c d e f a | g c c B c e G A | A c g f e c c B | b g g f e f d e | e f d e f e d /2 c /2 B | b g g f e f d e | e g b g g f f g | b g g f e f d e | e f d e f e d /2 c /2 B | g c c B c g d e | e g f d e d c B | d G G d e A A e | d G G f e c c e | d G G d e A A e | d g f d e c c e | d G G d e A A e | d G G f e c c e | d G G d e A A e | d g f d e f g a | b g g e d b c d | d b c d e d c B | b g g e d b c d | d b b g g f f g | b g g e d b c d | d b c d e d c B | g c c B c g d e | e g f d e d c B | g c c B c e G A | A c e c B d f d | g c c B c e G A | A B c e d c c /2 c /2 c | g c c B c e G A | A c e c d e f a | g c c B c e G A | A c g f e c c B | b g g f e f d e | e f d e f e d /2 c /2 B | b g g f e f d e | e g b g g f f g | b g g f e f d e | e f d e f e d /2 c /2 B | g c c B c g d e | e g f d e d c B | g c c B c e G A | A c e c B d f d | g c c B c e G A | A B c e d c c /2 c /2 c | g c c B c e G A | A c e c d e f a | g c c B c e G A | A c g f e c c B | b g g f e f d e | e f d e f e d /2 c /2 B | b g g f e f d e | e g b g g f f g | b g g f e f d e | e f d e f e d /2 c /2 B | g c c B c g d e | e g f d e d c B | d G G d e A A e | d G G f e c c e | d G G d e A A e | d g f d e c c e | d G G d e A A e | d G G f e c c e | d G G d e A A e | d g f d e f g a | b g g e d b c d | d b c d e d c B | b g g e d b c d | d b b g g f f g | b g g e d b c d | d b c d e d c B | g c c B c g d e | e g f d e d c B | c 8 |
+
+T:2D Or Not 2D
+M:3/4
+K:Cmaj
+c > d e 2 e > c | G > E F 2 A 2 | c 2 G > B d > G | B > d c > B c > d | e > ^d e 2 e > c | G > E F 2 A > F | c > F B > G =d > G | B > d c 2 C > G | c > d e 2 e > c | G > E F 2 A 2 | c 2 G > B d > G | B > d c > B c > d | e > ^d e 2 e > c | G > E F 2 A > F | c > F B > G =d > G | B > d c 2 C > G | ^F > G E > C G > C | A > C =F > A C > F | A > c B > G d > G | e > G c > e G > c | (3 F E D C > E G > C | (3 ^A =A G F > C A > C | c > C B > G d > f | (3 G A B c 2 C > G | ^F > G E 2 G > C | A > C =F 2 C > F | A > c B 2 d > G | e > G c 2 G > c | (3 f e d c > e G > c | (3 ^A =A G F > c (3 A B c | F 2 B > G d > f | (3 G A B c 2 C 2 |
+
+T:The 30 Year
+M:6/8
+K:Cmaj
+G, A, G, A, B, A, | B, C E C G, 2 | G, A, F E D C | A, C 2 D D B, | G, A, G, A, B, A, | B, C E C G, 2 | G, A, F E D C | A, B, 2 C C x | G, A, G, A, B, A, | B, C E C G, 2 | G, A, F E D C | A, C 2 D D B, | G, A, G, A, B, A, | B, C E C G, 2 | G, A, F E D C | A, B, 2 C C x | x c 3 d c | B 2< c 2 G E /2 ^F /2 | x /2 G /2 A c B A G | =F E D C D E | G 2< c 2 d c | B 2< c 2 G E /2 ^F /2 | x /2 G /2 A c B A G | E E c B A G | E =F E D E 2 | E F A G E D | E F E F A d | c B 2 c c x | x c 3 d c | B 2< c 2 G E /2 ^F /2 | x /2 G /2 A c B A G | =F E D C D E | G 2< c 2 d c | B 2< c 2 G E /2 ^F /2 | x /2 G /2 A c B A G | E E c B A G | E =F E D E 2 | E F A G E D | E F E F A d | c B 2 c c x | G,
+
+T:The 30 Year
+M:6/8
+K:Cmaj
+c 3 d c B | c 2 c G (3 E ^F G | A c B A G =F | E D C D E G | c 3 d c B | c c 2 G (3 E ^F G | A c B A G E | E c B A G E | =F E D 2< E 2 | F A G E D E | F E F A d c | B 2 c c x 2 | c 3 d c B | c 2 c G (3 E ^F G | A c B A G =F | E D C D E G | c 3 d c B | c c 2 G (3 E ^F G | A c B A G E | E c B A G E | =F E D 2< E 2 | F A G E D E | F E F A d c | B 2 c c x G, |
+
+T:30th Anniversary
+M:9/8
+K:Cmaj
+C 3 E /2 F /2 G c A G E | D 2 D D E /2 F /2 G A G E | C 3 E /2 F /2 G c A G E | D 2 E E D B, C 2 G, | C 3 E /2 F /2 G c A G E | D 2 D D E /2 F /2 G A G E | C 3 E /2 F /2 G c A G E | D 2 E E D B, C 2 B, | A, 3 C E A c B A | B 3 E A /2 B /2 c d c B | c B A f e d c B A | ^G 2 B E F D E D B, | A, 3 C E A c B A | B 3 E A /2 B /2 c d c B | c B A f e d c B A | ^G 2 B E F ^G A 2 B | c 3 =G E /2 F /2 G e d c | A 2 f f e d B c d | c 2 G E /2 F /2 G c e d c | B 2 G G A B 2< c 2 | c 3 G E /2 F /2 G e d c | A 2 f f e d B c d | c 2 G E /2 F /2 G c e d c | B 2 G G A B c G E |
+
+T:40 Year
+M:3/4
+K:Cmin
+C 2 D 2 E B, | F 2 G 2 B E | c 4 c A | e 2 c 2 (3 c B G | B 2 G 2 G E | B 2 A 2 G 2 | F 2 G 2 c e | B 2 F 2 F E | F E 2< C 2 C | F 2 G 3 C | F 2 G 3 E | B 2 G 2 F 2 | E 3 F C B, | E 2 F 2 G 2 | F 6 | F 3 D E D | C 2 D 2 E B, | F 2 G 2 B E | c 4 c A | e 2 c 2 (3 c B G | B 2 G 2 G E | B 2 A 2 G 2 | F 2 G 2 c e | B 2 F 2 F E | F E 2< C 2 C | F 2 G 3 C | F 2 G 3 E | B 2 G 2 F 2 | E 3 F C B, | E 2 F 2 G 2 | F 6 | B 2 c 2 e c | f 4 f g | f 2 e 2 c 2 | e 3 c e f | e 2 c 2 A G | A G 2< e 2 G | G F d 2 f B | B 4 B G | B c e 2 c f | f 4 f g | f 2 e 2 g 2 | e c c 4 | c 2 B 2 A G | A G G 2 (3 G F E | B 2 A 2 G 2 | G F F 4 | A 2 G 2 E 2 | C 6 | C 6 |
+
+T:40 Year
+M:3/4
+K:Cmin
+C 2 D 2 E B, | F 2 G 2 B 2 | c 4 c A | e 2 c 2 (3 c B G | B 2 G 2 E 2 | B B G 2 F 2 | F 2 G 2 c 2 | B 2 F 2 F E | F E 2< C 2 C | F 2 G 2 G C | F 2 G 3 E | B B G 2 F 2 | E 3 F C B, | E 2 F 2 G 2 | F 6 | F 3 D E D | C 2 D 2 E B, | F 2 G 2 B 2 | c 4 c A | e 2 c 2 (3 c B G | B 2 G 2 E 2 | B B G 2 F 2 | F 2 G 2 c 2 | B 2 F 2 F E | F E 2< C 2 C | F 2 G 2 G C | F 2 G 3 E | B B G 2 F 2 | E 3 F C B, | E 2 F 2 G 2 | F 6 | B 2 c 2 e c | f 4 f g | f 2 e 2 G 2 | e 3 c e f | e 2 c 2 A G | A G 2< e 2 G | G F d 2 f B | B 4 B G | B c e 2 c f | f 4 f g | f 2 e 2 g 2 | c 6 | c 2 B 2 A G | A G G 2 G E | B 2 A 2 G 2 | G F F 4 | A 2 G 2 E 2 |
+
+T:42 Beech Avenue
+M:4/4
+K:Cmaj
+C x G x G E G 2 | A x G A A c c /2 c /2 c | C x G 2 F E C 2 | A, D D D B, G, E, D, | C, C G x G E G 2 | A x G A A c d e | G 2 F E F E C 2 | A, D D D C B, C D | C x G x G E G 2 | A x G A A c c /2 c /2 c | C x G 2 F E C 2 | A, D D D B, G, E, D, | C, C G x G E G 2 | A x G A A c d e | G 2 F E F E C 2 | A, D D D C B, C D | A x G E G A C 2 | C G, A, C D C D E | A x G E G A C 2 | C c c A A G G /2 G /2 E | A x G E G A C 2 | C G, A, C D C D E | x G, A, C D C D E | C c c G A c d e | A x G E G A C 2 | C G, A, C D C D E | A x G E G A C 2 | C c c A A G G /2 G /2 E | A x G E G A C 2 | C G, A, C D C D E | x G, A, C D C D E | C c c A A G E D |
+
+T:48 Bardes
+M:6/8
+K:Cmin
+G F G A 2 G | F 2 E 2< D 2 | B, C D E D C | B, C D E 2 C | G F G A 2 G | F 2 E 2< D 2 | B, C D E D C | B, D B, 2< C 2 | G F G A 2 G | F 2 E 2< D 2 | B, C D E D C | B, C D E 2 C | G F G A 2 G | F 2 E 2< D 2 | B, C D E D C | B, D B, 2< C 2 | C E G A G F | E F A 2< G 2 | G 2 G D 2 E | F G F E 2 D | C E G A G F | E F A 2< G 2 | G 2 G E 2 D | B, D B, C 2 D | C E G A G F | E F A 2< G 2 | G 2 G D 2 E | F G F E 2 D | C E G A G F | E F A 2< G 2 | G 2 G E 2 D | B, D B, C 2 D | C D E F E D | C D E 2< C 2 | C D E F E D | B, C D E 2 C | C D E F E D | C D E 2< C 2 | C D E F E D | B, D B, 2< C 2 |
+
+T:5:30am
+M:4/4
+K:Cdor
+c 2< G 2 c G e G | c G G A B G F G /2 A /2 | B F D F B, F D F | B F e F d F c F | c 2< G 2 c G e G | c G G A B G F G /2 A /2 | B F D F B, F D F | e d c B c 2 x 2 | c 2< G 2 c G e G | c G G A B G F G /2 A /2 | B F D F B, F D F | B F e F d F c F | c 2< G 2 c G e G | c G G A B G F G /2 A /2 | B F D F B, F D F | E D C B, c 2 x 2 | B 2< G 2 c 2 d c | B G G A B G F G /2 A /2 | B F D F B, F D F | B F e F d F c F | c 2< G 2 c G e G | c G G A B G F G /2 A /2 | B F D F B, F D F | E D C B, c 2 x 2 | c 2< G 2 c G e G | c G G A B G F G /2 A /2 | B F D F B, F D F | B F e F d F c F | c 2< G 2 c G e G | c G G A B G F G /2 A /2 | B F D F B, F D F | c 2< G 2 c G e G | c g g f e f e d | c 2< F 2 d 3 B | f 3 e d e c B | c 2< G 2 c G e G | c g g f e f e d | F 3 B 2< d 2 f | e d c B c 2 x d | e 2< G 2 e G f G | e 2< G 2 g f e g | f 2< d 2 B 2< d 2 | f 2< d 2 _a g f _a | g 2< e 2 B 2< e 2 | f 2< e 2 g f e g | _a d d e f _a g f | e d c d e 2
+
+T:6-8 Du Petit Sarny
+M:6/8
+K:Cmaj
+E 3 E F G | E 3 E D C | A, B, C D C D | E C A, 2< G, 2 | E 3 E F G | E 3 E D C | A, B, C D C D | E C B, 2< C 2 | E 3 E F G | E 3 E D C | A, B, C D C D | E C A, 2< G, 2 | E 3 E F G | E 3 E D C | A, B, C D C D | E C B, C D E | G E G c G E | D 3 E C A, | G, E E G, F F | G, E E D E F | G E G c G E | D 3 E C A, | C c B A G E | D C B, 2< C 2 | C E F G E G | c G E 2< D 2 | E C A, G, E E | G, F F G, E E | D E F G E G | c G E 2< D 2 | E C A, G, E, G, | A, 3 B, A, B, | C 3 C E F | G E G c 2 B | A 3 c G F | E G c c B c | d 3 d E F | G E G c 2 B | A 3 c G F | E G c B A B | c 3 c E F | G E G c 2 B | A 3 c G F | E G c c B c | d 3 d E F | G E G c 2 B | A 3 c G F | E G c B A B | c 3 c C D |
+
+T:72nd's Farewell To Aberdeen
+M:4/4
+K:Cmaj
+e A d d e /2 x /2 g /2 x /2 e /2 x /2 f | f g B B c /2 x /2 e /2 x /2 e /2 x /2 A | A A d d e /2 x /2 g /2 x /2 e /2 x /2 f | f g x /2 B /2 f /2 x /2 d /2 x /2 d 2 d | e A d d e /2 x /2 g /2 x /2 e /2 x /2 f | f g B B c /2 x /2 e /2 x /2 e /2 x /2 A | A A d d e /2 x /2 g /2 x /2 e /2 x /2 f | f g x /2 B /2 f /2 x /2 d /2 x /2 d 2 d | g a A A c B G A | A A d A d e /2 x /2 c /2 x /2 A | g a A A c B G A | A A d f /2 x /2 d /2 x /2 d 2 d | g a A A c B G A | A A d A d e /2 x /2 c /2 x /2 A | g a A A c B G A | A A d f /2 x /2 d /2 x /2 d 2 d |
+
+T:72nd's Farewell To Aberdeen
+M:4/4
+K:Cmaj
+G < A G 2 c 2 c 2 | d e f > e d < c e 2 | e 2 f 2 A 2 A 2 | B c d > e d < B G 2 | G < A G 2 c 2 c 2 | d e f > e d < c e 2 | e 2 f 2 A 2 e > d | c < B c 4 c 2 | G < A G 2 c 2 c 2 | d e f > e d < c e 2 | e 2 f 2 A 2 A 2 | B c d > e d < B G 2 | G < A G 2 c 2 c 2 | d e f > e d < c e 2 | e 2 f 2 A 2 e > d | c < B c 4 c 2 | e < f g 2 G 2 G 2 | (3 G A ^A =A 2 F 2 G 2 | G < A G 2 c 2 G 2 | c 2 d > c B < A G 2 | e < f g 2 G 2 G 2 | (3 G A ^A =A 2 F 2 G 2 | G < A G 2 c 2 e > d | c < B c 4 c 2 | e < f g 2 G 2 G 2 | (3 G A ^A =A 2 F 2 G 2 | G < A G 2 c 2 G 2 | c 2 d > c B < A G 2 | e < f g 2 G 2 G 2 | (3 G A ^A =A 2 F 2 G 2 | G < A G 2 c 2 e > d | c < B c 4 c 2 |
+
+T:74th Highlanders' Quickstep
+M:4/4
+K:Cmix
+g 2 c' 4 g 2 | c' 2 e c e f g 2 | f e d d b 2 f f | b 2 d B d e f 2 | e d c' 4 g 2 | c' 2 e c e f g 2 | c' a g 2 f e d e | f g e 2 c 2 c 2 | g 2 c' 4 g 2 | c' 2 e c e f g 2 | f e d d b 2 f f | b 2 d B d e f 2 | e d c' 4 g 2 | c' 2 e c e f g 2 | c' a g 2 f e d e | f g e 2 c 2 c 2 | g 2 c d e f g c | e c g c c' c e 2 | d c B c d e f d | B d f d b f d 2 | c B c d e f g c | e c g c c' c e 2 | g 2 f e d c B c | d f e 2 c 2 c 2 | g 2 c d e f g c | e c g c c' c e 2 | d c B c d e f d | B d f d b f d 2 | c B c d e f g c | e c g c c' c e 2 | g 2 f e d c B c | d f e 2 c 2 c 2 |
+
+T:79th's Farewell To Gibralter
+M:2/4
+K:Cmaj
+e /2 f < g a /2 g e c > d c | c' /2 b /2 a g /2 e /2 g /2 a /2 c' /2 g /2 e d d | e /2 f < g a /2 g e c > d c | c' /2 b /2 a g /2 e /2 g /2 a /2 c' /2 g /2 e c c | e /2 f < g a /2 g e c > d c | c' /2 b /2 a g /2 e /2 g /2 a /2 c' /2 g /2 e d d | e /2 f < g a /2 g e c > d c | c' /2 b /2 a g /2 e /2 g /2 a /2 c' /2 g /2 e c c | c' a g /2 e /2 g /2 a /2 c' /2 g /2 a /2 c' /2 g /2 e /2 d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 a d d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 a /2 c' /2 g /2 e /2 d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 e c c | c' a g /2 e /2 g /2 a /2 c' /2 g /2 a /2 c' /2 g /2 e /2 d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 a d d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 a /2 c' /2 g /2 e /2 d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 e c c | e /2 d < c d /2 e c' a g /2 e /2 d | e /2 d /2 c /2 d /2 e /2 f /2 g /2 a /2 g /2 e /2 a d d | e /2 d < c d /2 e c' a g /2 e /2 d | e /2 d /2 c /2 d /2 e /2 f /2 g /2 a /2 g /2 e /2 e c c | e /2 d < c d /2 e c' a g /2 e /2 d | e /2 d /2 c /2 d /2 e /2 f /2 g /2 a /2 g /2 e /2 a d d | e /2 d < c d /2 e c' a g /2 e /2 d | e /2 d /2 c /2 d /2 e /2 f /2 g /2 a /2 g /2 e /2 e c c | e /2 f < g a /2 g e g > a g | c' a > g a c' a g /2 e /2 d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 a /2 c' /2 g /2 e /2 d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 e c c | e /2 f < g a /2 g e g > a g | c' a > g a c' a g /2 e /2 d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 a /2 c' /2 g /2 e /2 d | c' a g /2 e /2 g /2 a /2 c' /2 g /2 e c c |
