@@ -5,7 +5,7 @@ import io
 
 class Dataset(object):
 
-    def __init__(self, path, batch_size=1000, num_steps=10, withdelim=False):
+    def __init__(self, path, batch_size=1000, num_steps=10, with_delim=False):
         """ `path` is processed file's path """
         print("Loading dataset...")
         with io.open(path, encoding='utf-8', mode='r') as f:
@@ -14,7 +14,7 @@ class Dataset(object):
 
         self.vocab = set(raw_data)
         start_symbol, end_symbol = '<s>', '</s>'
-        if withdelim:
+        if with_delim:
             self.vocab.update({start_symbol, end_symbol})
 
         self.vocab_size = len(self.vocab)
@@ -22,7 +22,7 @@ class Dataset(object):
         self.vocab_to_idx = dict(
             zip(self.idx_to_vocab.values(), self.idx_to_vocab.keys()))
 
-        if not withdelim:
+        if not with_delim:
             self.data = [self.vocab_to_idx[c] for c in raw_data]
         else:
             tunes = raw_data.split('\n\n')
