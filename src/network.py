@@ -54,15 +54,18 @@ class RNN(object):
         # Create the RNN cells
         if self.cell == "lstm":
             rnn_states = tuple(
-            [tf.contrib.rnn.LSTMStateTuple(state_per_layer[i][0], state_per_layer[i][1])
-             for i in range(self.num_layers)])
-            single_cell = tf.nn.rnn_cell.LSTMCell(self.cell_size, forget_bias=1.0)
+                [tf.contrib.rnn.LSTMStateTuple(state_per_layer[i][0], state_per_layer[i][1])
+                 for i in range(self.num_layers)])
+            single_cell = tf.nn.rnn_cell.LSTMCell(
+                self.cell_size, forget_bias=1.0)
             multi_cell = tf.nn.rnn_cell.MultiRNNCell([single_cell for _ in xrange(self.num_layers)],
-                                                 state_is_tuple=True)
+                                                     state_is_tuple=True)
         else:
-            rnn_states = tuple([state_per_layer[i] for i in range(self.num_layers)])
+            rnn_states = tuple([state_per_layer[i]
+                                for i in range(self.num_layers)])
             single_cell = tf.nn.rnn_cell.GRUCell(self.cell_size)
-            multi_cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * self.num_layers)
+            multi_cell = tf.nn.rnn_cell.MultiRNNCell(
+                [single_cell] * self.num_layers)
 
         # Update `state` after each training step
         output, self.state = tf.nn.dynamic_rnn(multi_cell, rnn_input, dtype=tf.float32,
@@ -100,9 +103,11 @@ class RNN(object):
             sess.run(tf.global_variables_initializer())
 
             if self.cell == "lstm":
-                state = np.zeros((self.num_layers, 2, self.batch_size, self.cell_size))
+                state = np.zeros(
+                    (self.num_layers, 2, self.batch_size, self.cell_size))
             else:
-                state = np.zeros((self.num_layers, self.batch_size, self.cell_size))
+                state = np.zeros(
+                    (self.num_layers, self.batch_size, self.cell_size))
             for epoch in xrange(self.num_epochs):
                 losses = 0.0
                 print "Training: Epoch {}".format(epoch)
@@ -113,7 +118,8 @@ class RNN(object):
                                                          self.y: y,
                                                          self.init_state: state})
                     losses += loss
-                    sys.stdout.write(" Steps {}/{} \r".format(step, epoch_size))
+                    sys.stdout.write(
+                        " Steps {}/{} \r".format(step, epoch_size))
                     sys.stdout.flush()
                 print "Avg. loss for Epoch {}: {}".format(
                     epoch, losses / (step + 1))
@@ -133,7 +139,7 @@ class RNN(object):
             x = np.array([test_input[i]])
             x = x.reshape((1, 1))
             out = self.predict_(x, sess, i == 0)[0]
-        gen = [text]    
+        gen = [text]
         for i in range(size):
             element = np.random.choice(range(self.data.vocab_size), p=out)
             gen.append(self.data.idx_to_vocab[element])
