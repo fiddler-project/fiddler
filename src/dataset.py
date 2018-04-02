@@ -1,22 +1,22 @@
 import numpy as np
 import re
+import io
 
 
 class Dataset(object):
 
     def __init__(self, path, batch_size=1000, num_steps=10, withdelim=False):
-
         """ `path` is processed file's path """
         print("Loading dataset...")
-        with open(path, 'r') as f:
+        with io.open(path, encoding='utf-8', mode='r') as f:
             raw_data = f.read()
             print("Data length:", len(raw_data))
-        
+
         self.vocab = set(raw_data)
         start_symbol, end_symbol = '<s>', '</s>'
         if withdelim:
             self.vocab.update({start_symbol, end_symbol})
-        
+
         self.vocab_size = len(self.vocab)
         self.idx_to_vocab = dict(enumerate(self.vocab))
         self.vocab_to_idx = dict(
@@ -25,12 +25,12 @@ class Dataset(object):
         if not withdelim:
             self.data = [self.vocab_to_idx[c] for c in raw_data]
         else:
-            tunes = raw_data.split('\n\n')  
+            tunes = raw_data.split('\n\n')
             for t in tunes:
                 self.data.append(self.vocab_to_idx[start_symbol])
                 self.data.append([self.vocab_to_idx[c] for c in t])
                 self.data.append(self.vocab_to_idx[end_symbol])
-            
+
         del raw_data
         self.batch_size = batch_size
         self.num_steps = num_steps
@@ -47,6 +47,7 @@ class Dataset(object):
             x, y = data[:, i * self.num_steps:(i + 1) * self.num_steps], \
                 data[:, i * self.num_steps + 1: (i + 1) * self.num_steps + 1]
             yield x, y, epoch_size
+
 
 class LMDataset(object):
 
