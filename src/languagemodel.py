@@ -3,6 +3,7 @@ import math, re
 import nltk
 import numpy as np
 
+
 class NgramLM(object):
 
 	def __init__(self, data, n):
@@ -63,12 +64,3 @@ class NgramLM(object):
 			tune += c
 			seed = tune[-(self.n - 1):]
 		return self._clean(tune)
-
-
-
-
-
-
-
-
-

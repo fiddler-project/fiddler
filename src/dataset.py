@@ -1,11 +1,12 @@
 import numpy as np
+import re
 
 
 class Dataset(object):
 
     def __init__(self, path, batch_size=1000, num_steps=10):
         """ `path` is processed file's path """
-        print "Loading dataset..."
+        print("Loading dataset...")
         with open(path, 'r') as f:
             raw_data = f.read()
             print("Data length:", len(raw_data))
@@ -31,3 +32,19 @@ class Dataset(object):
             x, y = data[:, i * self.num_steps:(i + 1) * self.num_steps], \
                 data[:, i * self.num_steps + 1: (i + 1) * self.num_steps + 1]
             yield x, y, epoch_size
+
+class LMDataset(object):
+
+    def __init__(self, file):
+        self.data = {}
+        with open(file, 'r') as f:
+            tunes = re.findall(r'\nK:(.*)\n(.*)\n', f.read())
+            for key, tune in tunes:
+                if key in self.data:
+                    self.data[key].append(tune)
+                else:
+                    self.data[key] = [tune]
+
+    def get_data(self):
+        """ Returns data as {key: list of tunes} """
+        return self.data
