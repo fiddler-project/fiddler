@@ -17,7 +17,7 @@ def main():
 @main.command()
 @click.option("--file", "-f", type=click.Path(exists=True), help="Train Data File Path")
 @click.option("--batch-size", "-b", type=click.INT, help="Batch size")
-@click.option("--layers", "-l", default=2, type=click.INT, help="Batch size")
+@click.option("--layers", "-l", default=2, type=click.INT, help="Number of layers in the network")
 @click.option("--learning-rate", "-r", default=1e-3, type=click.FLOAT, help="Learning Rate")
 @click.option("--num-steps", "-n", type=click.INT, help="No. of time steps in RNN")
 @click.option("--cell-size", "-s", type=click.INT, help="Dimension of cell states")
