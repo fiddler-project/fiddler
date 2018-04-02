@@ -1,3 +1,0 @@
-[console_scripts]
-fiddler = src.cli:main
-

@@ -32,7 +32,7 @@ class RNN(object):
         # The second value for dimension depicts separate states for c and h
         # of a LSTM cell in RNN. Therefore, it is hardcoded as 2.
         # GRU cell in RNN has a single state
-        if self.cell is "lstm":
+        if self.cell == "lstm":
             self.init_state = tf.placeholder(
                 tf.float32, [self.num_layers, 2, None, self.cell_size])
         else:
@@ -52,7 +52,7 @@ class RNN(object):
         state_per_layer = tf.unstack(self.init_state, axis=0)
 
         # Create the RNN cells
-        if self.cell is "lstm":
+        if self.cell == "lstm":
             rnn_states = tuple(
             [tf.contrib.rnn.LSTMStateTuple(state_per_layer[i][0], state_per_layer[i][1])
              for i in range(self.num_layers)])
@@ -99,7 +99,7 @@ class RNN(object):
             saver = tf.train.Saver()
             sess.run(tf.global_variables_initializer())
 
-            if self.cell is "lstm":
+            if self.cell == "lstm":
                 state = np.zeros((self.num_layers, 2, self.batch_size, self.cell_size))
             else:
                 state = np.zeros((self.num_layers, self.batch_size, self.cell_size))
@@ -145,7 +145,7 @@ class RNN(object):
     def predict_(self, x, sess, init_zero_state=True):
         if not init_zero_state:
             init_value = self.final_state
-        elif self.cell is "lstm":
+        elif self.cell == "lstm":
             init_value = np.zeros((self.num_layers, 2, 1, self.cell_size))
         else:
             init_value = np.zeros((self.num_layers, 1, self.cell_size))
