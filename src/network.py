@@ -93,7 +93,7 @@ class RNN(object):
         correct_prediction = tf.equal(self.predict, labels)
         self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-    def train(self, test_output=True, test_seed=None):
+    def train(self, test_output=True, test_seed=None, with_delim=True):
         # build network
         self._build()
 
@@ -125,26 +125,34 @@ class RNN(object):
                     epoch, losses / (step + 1))
                 if test_output:
                     print "---------- Generated text -----------"
-                    print self.gen_text(sess, seed_input=test_seed)
+                    print self.gen_text(sess, seed_input=test_seed, with_delim=with_delim)
 
             saver.save(sess, "models/"+self.cell+"-final")
 
-    def gen_text(self, sess, seed_input=None, size=300):
+    def gen_text(self, sess, seed_input=None, with_delim=True, size=300):
+        if with_delim:
+            text, prev_char = [], ""
+            char_in = self.data.vocab_to_idx["<s>"]
+            out = self.predict_(np.array([char_in]).reshape((1, 1)), sess)[0]
+            while prev_char != "</s>":
+                text.append(prev_char)
+                char_in = np.random.choice(range(self.data.vocab_size), p=out)
+                prev_char = self.data.idx_to_vocab[char_in]                
+                out = self.predict_(np.array([char_in]).reshape((1, 1)), sess, False)[0]
+            return "".join(text)
         if not seed_input:
             seed_input = self.data.idx_to_vocab[
                 np.random.randint(0, self.data.vocab_size - 1)]
         text = seed_input
         test_input = [self.data.vocab_to_idx[c] for c in seed_input]
         for i in range(len(test_input)):
-            x = np.array([test_input[i]])
-            x = x.reshape((1, 1))
+            x = np.array([test_input[i]]).reshape((1, 1))
             out = self.predict_(x, sess, i == 0)[0]
         gen = [text]
         for i in range(size):
             element = np.random.choice(range(self.data.vocab_size), p=out)
             gen.append(self.data.idx_to_vocab[element])
-            x = np.array([element])
-            x = x.reshape((1, 1))
+            x = np.array([element]).reshape((1, 1))
             out = self.predict_(x, sess, False)[0]
         return "".join(gen)
 
