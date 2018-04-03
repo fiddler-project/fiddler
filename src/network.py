@@ -142,6 +142,9 @@ class RNN(object):
                 out = self.predict_(
                     np.array([char_in]).reshape((1, 1)), sess, False)[0]
             return "".join(text)
+        return self._gen_text_from_seed(sess, seed_input, size)
+
+    def _gen_text_from_seed(self, sess, seed_input, size):
         if not seed_input:
             seed_input = self.data.idx_to_vocab[
                 np.random.randint(0, self.data.vocab_size - 1)]
