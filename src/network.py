@@ -125,7 +125,8 @@ class RNN(object):
                     epoch, losses / (step + 1))
                 if test_output:
                     print "---------- Generated text -----------"
-                    print self.gen_text(sess, seed_input=test_seed, with_delim=with_delim)
+                    print self.gen_text(
+                        sess, seed_input=test_seed, with_delim=with_delim)
 
             saver.save(sess, "models/"+self.cell+"-final")
 
@@ -137,8 +138,9 @@ class RNN(object):
             while prev_char != "</s>":
                 text.append(prev_char)
                 char_in = np.random.choice(range(self.data.vocab_size), p=out)
-                prev_char = self.data.idx_to_vocab[char_in]                
-                out = self.predict_(np.array([char_in]).reshape((1, 1)), sess, False)[0]
+                prev_char = self.data.idx_to_vocab[char_in]
+                out = self.predict_(
+                    np.array([char_in]).reshape((1, 1)), sess, False)[0]
             return "".join(text)
         if not seed_input:
             seed_input = self.data.idx_to_vocab[
