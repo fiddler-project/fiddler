@@ -34,4 +34,4 @@ def train_rnn(file, batch_size, layers, learning_rate,
                  num_steps=num_steps, with_delim=delim)
     n = RNN(data=ds, cell=cell, num_layers=layers,
             learning_rate=learning_rate, cell_size=cell_size, num_epochs=epochs)
-    n.train(test_output=True, test_seed=test_seed)
+    n.train(test_output=True, test_seed=test_seed, with_delim=delim)
