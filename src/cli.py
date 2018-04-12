@@ -19,8 +19,8 @@ def main():
 @click.option("--batch-size", "-b", type=click.INT, help="Batch size")
 @click.option("--layers", "-l", default=2, type=click.INT, help="Number of layers in the network")
 @click.option("--learning-rate", "-r", default=1e-3, type=click.FLOAT, help="Learning Rate")
-@click.option("--num-steps", "-n", type=click.INT, help="No. of time steps in RNN")
-@click.option("--cell-size", "-s", type=click.INT, help="Dimension of cell states")
+@click.option("--num-steps", "-n", type=click.INT, default=15, help="No. of time steps in RNN")
+@click.option("--cell-size", "-s", type=click.INT, default=100, help="Dimension of cell states")
 @click.option("--epochs", "-e", type=click.INT,
               help="No. of epochs to run training for")
 @click.option("--cell", "-c", type=click.Choice(['lstm', 'gru']),
@@ -35,3 +35,7 @@ def train_rnn(file, batch_size, layers, learning_rate,
     n = RNN(data=ds, cell=cell, num_layers=layers,
             learning_rate=learning_rate, cell_size=cell_size, num_epochs=epochs)
     n.train(test_output=True, test_seed=test_seed, with_delim=delim)
+
+
+if __name__ == '__main__':
+    main()
