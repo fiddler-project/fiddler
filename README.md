@@ -43,8 +43,6 @@ Options:
 
  ## Generate music using a trained RNN model
 
-     fiddler generate [options]
-
 ```
 Usage: fiddler generate [OPTIONS]
 
