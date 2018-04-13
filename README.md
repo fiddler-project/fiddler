@@ -40,4 +40,17 @@ Options:
 ```
  
  If `fiddler` is not installed as command-line tool, you can use the same command using `python src/cli.py` with same arguments.
+
+ ## Generate music using a trained RNN model
+
+     fiddler generate [options]
+
+```
+Usage: fiddler generate [OPTIONS]
+
+Options:
+  -m, --model_path PATH  Directory path for saved model
+  --help                 Show this message and exit.
+```
+  
  
