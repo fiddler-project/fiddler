@@ -1,2 +1,8 @@
 *.pyc
 .DS_store
+.eggs
+build
+deps
+dist
+fiddler.egg-info
+models
