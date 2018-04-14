@@ -9,7 +9,7 @@ MODELS_PATH = "../models/"
 
 class RNN(object):
 
-    def __init__(self, data, cell, cell_size, num_layers=2, num_epochs=50, learning_rate=1e-3, training=True):
+    def __init__(self, data, cell, cell_size, dropout=0.8, num_layers=2, num_epochs=50, learning_rate=1e-3, training=True):
         """
         `data` is dataset.Dataset object
         `cell_size` is the Dimensions for each RNN cell's parameters (i.e. c and h)
@@ -21,6 +21,7 @@ class RNN(object):
         self.batch_size = self.data.batch_size
         self.cell = cell
         self.cell_size = cell_size
+        self.dropout = dropout
         self.num_layers = num_layers
         self.num_steps = self.data.num_steps
         self.num_classes = self.data.vocab_size
@@ -63,12 +64,20 @@ class RNN(object):
                  for i in range(self.num_layers)])
             single_cell = tf.nn.rnn_cell.LSTMCell(
                 self.cell_size, forget_bias=1.0)
+            """Use dropout only for training"""
+            if self.dropout:
+                single_cell = tf.contrib.rnn.DropoutWrapper(
+                    single_cell, output_keep_prob=self.dropout)
             multi_cell = tf.nn.rnn_cell.MultiRNNCell([single_cell for _ in xrange(self.num_layers)],
                                                      state_is_tuple=True)
         else:
             rnn_states = tuple([state_per_layer[i]
                                 for i in range(self.num_layers)])
             single_cell = tf.nn.rnn_cell.GRUCell(self.cell_size)
+            """Use dropout only for training"""
+            if self.dropout:
+                single_cell = tf.contrib.rnn.DropoutWrapper(
+                    single_cell, output_keep_prob=self.dropout)
             multi_cell = tf.nn.rnn_cell.MultiRNNCell(
                 [single_cell] * self.num_layers)
 
