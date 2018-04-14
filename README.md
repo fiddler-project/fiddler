@@ -21,7 +21,6 @@ In order to install `fiddler` run the following command:
 
 ```
 Usage: fiddler train_rnn [OPTIONS]
-
   Train neural network
 
 Options:
@@ -31,11 +30,13 @@ Options:
   -r, --learning-rate FLOAT  Learning Rate
   -n, --num-steps INTEGER    No. of time steps in RNN
   -s, --cell-size INTEGER    Dimension of cell states
+  -d, --dropout FLOAT        Dropout probability for the output
   -e, --epochs INTEGER       No. of epochs to run training for
   -c, --cell [lstm|gru]      Type of cell used in RNN
   -t, --test-seed TEXT       Seed input for printing predicted text after each
                              training step
   --delim / --no-delim       Delimit tunes with start and end symbol
+  --save / --no-save         Save model to file
   --help                     Show this message and exit.
 ```
  
