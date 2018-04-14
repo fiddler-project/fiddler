@@ -64,7 +64,7 @@ class RNN(object):
                  for i in range(self.num_layers)])
             single_cell = tf.nn.rnn_cell.LSTMCell(
                 self.cell_size, forget_bias=1.0)
-            """Use dropout only for training"""
+            # Use dropout only for training
             if self.dropout:
                 single_cell = tf.contrib.rnn.DropoutWrapper(
                     single_cell, output_keep_prob=self.dropout)
@@ -74,7 +74,7 @@ class RNN(object):
             rnn_states = tuple([state_per_layer[i]
                                 for i in range(self.num_layers)])
             single_cell = tf.nn.rnn_cell.GRUCell(self.cell_size)
-            """Use dropout only for training"""
+            # Use dropout only for training
             if self.dropout:
                 single_cell = tf.contrib.rnn.DropoutWrapper(
                     single_cell, output_keep_prob=self.dropout)
