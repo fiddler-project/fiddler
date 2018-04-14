@@ -158,7 +158,7 @@ class RNN(object):
             string += ["{},{},1\n".format(train_accuracy[i], losses[i])]
         string += ["{},0,0\n".format(test_accuracy)]
         with open("{}{}/train_stats.txt".format(MODELS_PATH, model_name), "w") as f:
-            f.write("".join(string))
+            f.write(u''.join(string))
 
     def test(self, sess):
         accuracy = 0
@@ -187,7 +187,7 @@ class RNN(object):
                 prev_char = self.data.idx_to_vocab[char_in]
                 out = self.predict_(
                     np.array([char_in]).reshape((1, 1)), sess, False)[0]
-            return "".join(text)
+            return u''.join(text).encode('utf-8').strip()
         return self._gen_text_from_seed(sess, seed_input, size)
 
     def _gen_text_from_seed(self, sess, seed_input, size):
@@ -205,7 +205,7 @@ class RNN(object):
             gen.append(self.data.idx_to_vocab[element])
             x = np.array([element]).reshape((1, 1))
             out = self.predict_(x, sess, False)[0]
-        return "".join(gen)
+        return u''.join(gen).encode('utf-8').strip()
 
     def predict_(self, x, sess, init_zero_state=True):
         if not init_zero_state:
