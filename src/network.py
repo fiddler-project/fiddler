@@ -4,7 +4,7 @@ import tensorflow as tf
 import sys
 import pickle
 
-MODELS_PATH = "models/"
+MODELS_PATH = "../models/"
 
 
 class RNN(object):
