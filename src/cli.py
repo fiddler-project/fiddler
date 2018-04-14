@@ -15,14 +15,15 @@ def main():
 
 
 @main.command()
-@click.option("--file", "-f", type=click.Path(exists=True), help="Train Data File Path")
-@click.option("--batch-size", "-b", type=click.INT, help="Batch size")
+@click.option("--file", "-f", type=click.Path(exists=True),
+              help="Train Data File Path", required=True)
+@click.option("--batch-size", "-b", default=50, type=click.INT, help="Batch size")
 @click.option("--layers", "-l", default=2, type=click.INT, help="Number of layers in the network")
 @click.option("--learning-rate", "-r", default=1e-3, type=click.FLOAT, help="Learning Rate")
 @click.option("--num-steps", "-n", type=click.INT, default=15, help="No. of time steps in RNN")
 @click.option("--cell-size", "-s", type=click.INT, default=100, help="Dimension of cell states")
 @click.option("--dropout", "-d", type=click.FLOAT, default=0.8, help="Dropout probability for the output")
-@click.option("--epochs", "-e", type=click.INT,
+@click.option("--epochs", "-e", type=click.INT, default=10,
               help="No. of epochs to run training for")
 @click.option("--cell", "-c", type=click.Choice(['lstm', 'gru']),
               default="lstm", help="Type of cell used in RNN")
