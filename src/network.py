@@ -109,7 +109,8 @@ class RNN(object):
                 self.learning_rate).minimize(self.loss)
 
     def train(self, save=False, model_name="rnn", test_output=True, test_seed=None, with_delim=True):
-        # train
+        losses_ = []
+        train_accuracy = []
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
             saver = tf.train.Saver()
@@ -130,9 +131,12 @@ class RNN(object):
                                                                    self.init_state: state})
                     losses += loss
                     accuracies += accuracy
+                    losses_.append(loss)
+                    train_accuracy.append(accuracy)
                     sys.stdout.write(
                         " Steps {}/{} \r".format(step, epoch_size))
                     sys.stdout.flush()
+                    self.finish_state = state
                 print "Avg. loss for Epoch {}: {}".format(
                     epoch, losses / (step + 1))
                 print "Avg. accuracy for epoch {}: {}".format(
@@ -144,6 +148,29 @@ class RNN(object):
             if save:
                 saver.save(sess, "{}{}/".format(MODELS_PATH, model_name),
                            write_meta_graph=True)
+                test_accuracy = self.test(sess)
+                self._write_data(model_name, train_accuracy,
+                                 test_accuracy, losses_)
+
+    def _write_data(self, model_name, train_accuracy, test_accuracy, losses):
+        string = []
+        for i in xrange(len(train_accuracy)):
+            string += ["{},{},1\n".format(train_accuracy[i], losses[i])]
+        string += ["{},0,0\n".format(test_accuracy)]
+        with open("{}{}/train_stats.txt".format(MODELS_PATH, model_name), "w") as f:
+            f.write("".join(string))
+
+    def test(self, sess):
+        accuracy = 0
+        for step, data in enumerate(self.data.batch(train_data=False)):
+            x, y, _ = data
+            accuracy += sess.run([self.accuracy], feed_dict={
+                self.x: x,
+                self.y: y,
+                self.init_state: self.finish_state
+            })[0]
+        print "Test accuracy: {}".format(accuracy / (step + 1))
+        return accuracy / (step + 1)
 
     def gen_text(self, sess, model_path=None, seed_input=None, with_delim=True, size=300):
         if not sess:
@@ -184,9 +211,9 @@ class RNN(object):
         if not init_zero_state:
             init_value = self.final_state
         elif self.cell == "lstm":
-            init_value = np.zeros((self.num_layers, 2, 1, self.cell_size))
+            init_value = np.zeros((self.num_layers, 2, len(x), self.cell_size))
         else:
-            init_value = np.zeros((self.num_layers, 1, self.cell_size))
+            init_value = np.zeros((self.num_layers, len(x), self.cell_size))
         out, state = sess.run(
             [self.softmax_out, self.state],
             feed_dict={

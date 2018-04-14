@@ -1,11 +1,12 @@
 import numpy as np
 import re
 import io
+import math
 
 
 class Dataset(object):
 
-    def __init__(self, path, batch_size=1000, num_steps=10, with_delim=False):
+    def __init__(self, path, batch_size=1000, num_steps=10, with_delim=False, train_percent=0.8):
         """ `path` is processed file's path """
         print("Loading dataset...")
         with io.open(path, encoding='utf-8', mode='r') as f:
@@ -34,10 +35,14 @@ class Dataset(object):
         del raw_data
         self.batch_size = batch_size
         self.num_steps = num_steps
+        self.train_limit = int(math.floor(len(self.data) * train_percent))
 
-    def batch(self):
+    def batch(self, train_data=True):
         """ Returns a new batch """
-        raw_data = np.array(self.data)
+        if train_data:
+            raw_data = np.array(self.data[:self.train_limit])
+        else:
+            raw_data = np.array(self.data[self.train_limit + 1:])
         data_len = len(raw_data)
         batch_len = data_len // self.batch_size
         data = np.reshape(raw_data[0: self.batch_size * batch_len],
@@ -45,7 +50,7 @@ class Dataset(object):
         epoch_size = (batch_len - 1) // self.num_steps
         for i in xrange(epoch_size):
             x, y = data[:, i * self.num_steps:(i + 1) * self.num_steps], \
-                    data[:, i * self.num_steps + 1: (i + 1) * self.num_steps + 1]
+                data[:, i * self.num_steps + 1: (i + 1) * self.num_steps + 1]
             yield x, y, epoch_size
 
 
