@@ -202,6 +202,7 @@ class RNN(object):
                     num_layers=self.num_layers,
                     cell=self.cell,
                     cell_size=self.cell_size,
+                    dropout=self.dropout,
                     learning_rate=self.learning_rate)
 
     def save(self, model_name):

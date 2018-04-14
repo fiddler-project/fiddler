@@ -32,8 +32,8 @@ def main():
 def train_rnn(file, batch_size, layers, learning_rate, dropout, 
   num_steps, cell_size, epochs, cell, test_seed, delim, save):
     """ Train neural network """
-    model_name = "cell-{}-size-{}-batch-{}-steps-{}-layers-{}-lr-{}".format(
-        cell, cell_size, batch_size, num_steps, layers, learning_rate)
+    model_name = "cell-{}-size-{}-batch-{}-steps-{}-layers-{}-lr-{}-dropout-{}".format(
+        cell, cell_size, batch_size, num_steps, layers, learning_rate, dropout)
     ds = Dataset(file, batch_size=batch_size,
                  num_steps=num_steps, with_delim=delim)
     n = RNN(data=ds, cell=cell, num_layers=layers, dropout=dropout,
