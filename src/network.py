@@ -33,25 +33,23 @@ class RNN(object):
         self.y = tf.placeholder(tf.int32, shape=(
             None, None), name="y")
 
-        
         self.final_state = None
-        if self.training:
-            # The second value for dimension depicts separate states for c and h
-            # of a LSTM cell in RNN. Therefore, it is hardcoded as 2.
-            # GRU cell in RNN has a single state
-            if self.cell == "lstm":
-                self.init_state = tf.placeholder(
-                    tf.float32, [self.num_layers, 2, None, self.cell_size], name="cell_state")
-            else:
-                self.init_state = tf.placeholder(
-                    tf.float32, [self.num_layers, None, self.cell_size])
-            self._build()
+        # The second value for dimension depicts separate states for c and h
+        # of a LSTM cell in RNN. Therefore, it is hardcoded as 2.
+        # GRU cell in RNN has a single state
+        if self.cell == "lstm":
+            self.init_state = tf.placeholder(
+                tf.float32, [self.num_layers, 2, None, self.cell_size], name="cell_state")
+        else:
+            self.init_state = tf.placeholder(
+                tf.float32, [self.num_layers, None, self.cell_size], name="cell_state")
+        self._build()
 
     def _build(self):
         """ Build the network """
-        embedding_params = tf.get_variable(
+        self.embedding_params = tf.get_variable(
             'embedding_matrix', [self.num_classes, self.cell_size])
-        rnn_input = tf.nn.embedding_lookup(embedding_params, self.x)
+        rnn_input = tf.nn.embedding_lookup(self.embedding_params, self.x)
 
         # Each tensor will be of shape (2, self.batch_size, self.cell_size) - LSTM
         # Each tensor will be of shape (self.batch_size, self.cell_size) - GRU
@@ -103,10 +101,9 @@ class RNN(object):
 
     def train(self, save=False, model_name="rnn", test_output=True, test_seed=None, with_delim=True):
         # train
-        saver = tf.train.Saver()
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
-
+            saver = tf.train.Saver()
             if self.cell == "lstm":
                 state = np.zeros(
                     (self.num_layers, 2, self.batch_size, self.cell_size))
@@ -136,18 +133,13 @@ class RNN(object):
                     print self.gen_text(
                         sess, seed_input=test_seed, with_delim=with_delim)
             if save:
-                print [i.name for i in tf.global_variables()]
-                for i in tf.global_variables():
-                    print i.name
-                    print sess.run(i.value())
-                saver.save(sess, "{}{}/".format(MODELS_PATH,
-                                                model_name), write_meta_graph=True)
+                saver.save(sess, "{}{}/".format(MODELS_PATH, model_name),
+                           write_meta_graph=True)
 
     def gen_text(self, sess, model_path=None, seed_input=None, with_delim=True, size=300):
         if not sess:
             sess = tf.Session()
-            new_saver = tf.train.import_meta_graph(
-                '{}.meta'.format(model_path))
+            new_saver = tf.train.Saver()
             new_saver.restore(sess, model_path)
         if with_delim:
             text, prev_char = [], ""
