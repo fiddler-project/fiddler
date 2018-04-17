@@ -5,7 +5,8 @@ Entry point for training models and generating music sheet!
 import click
 import numpy as np
 from network import RNN
-from dataset import Dataset
+from languagemodel import NgramLM
+from dataset import Dataset, LMDataset
 import pickle
 
 
@@ -54,6 +55,30 @@ def generate(model_path):
     n = RNN(training=False, **config)
     print n.gen_text(sess=None, model_path=model_path)
 
+
+@main.command()
+@click.option("-n", type=click.INT, 
+              help="N for N-gram", required=True)
+@click.option("--file", "-f", type=click.Path(exists=True),
+              help="Train Data File Path", required=True)
+@click.option("--gen/--no-gen", "-g", default=False, 
+              help="True if tune needs to be generated")
+@click.option("--test/--no-test", default=False, 
+              help="True if test needs to be performed")
+@click.option("--smoothing", "-s", type=click.Choice(['add-k']),
+              help="Select smoothing")
+@click.option("-k", type=click.FLOAT, help="k for add-k smoothing")
+def ngram_lm(file, n, gen, test, smoothing, k):
+  lmd = LMDataset(file)
+  split = int(len(lmd.raw_data)*0.8)
+  train, test = lmd.raw_data[:split], lmd.raw_data[split:]
+  lm = NgramLM(data=train, n=n)
+  lm.train()
+  if gen:
+    print 'Generated Tune: \n{}'.format(lm.generate())
+  if test:
+    acc, pp = lm.test(data=test, s=smoothing, k=k)
+    print 'Accuracy: {}\nPerplexity: {}'.format(acc, pp)
 
 if __name__ == '__main__':
     main()

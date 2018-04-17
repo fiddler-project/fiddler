@@ -56,16 +56,20 @@ class Dataset(object):
 
 class LMDataset(object):
 
-    def __init__(self, file):
-        self.data = {}
+    def __init__(self, file, byKey=False):
         with open(file, 'r') as f:
-            tunes = re.findall(r'\nK:(.*)\n(.*)\n', f.read())
-            for key, tune in tunes:
-                if key in self.data:
-                    self.data[key].append(tune)
-                else:
-                    self.data[key] = [tune]
+            raw_data = f.read()
 
-    def get_data(self):
-        """ Returns data as {key: list of tunes} """
-        return self.data
+        if byKey:
+            self._keyWiseData(raw_data)
+        else:
+            self.raw_data = raw_data.split('\n\n')
+
+    def _keyWiseData(self, raw_data):
+        self.key_data={}
+        tunes = re.findall(r'\nK:(.*)\n(.*)\n', raw_data)
+        for key, tune in tunes:
+            if key in self.key_data:
+                self.key_data[key].append(tune)
+            else:
+                self.key_data[key] = [tune]
