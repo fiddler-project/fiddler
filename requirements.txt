@@ -2,3 +2,4 @@ numpy
 tensorflow
 click
 sklearn
+nltk
