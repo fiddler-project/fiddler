@@ -75,7 +75,7 @@ class RNN(object):
                                 for i in range(self.num_layers)])
             single_cell = tf.nn.rnn_cell.GRUCell(self.cell_size)
             # Use dropout only for training
-            if self.dropout:
+            if self.dropout and self.training:
                 single_cell = tf.contrib.rnn.DropoutWrapper(
                     single_cell, output_keep_prob=self.dropout)
             multi_cell = tf.nn.rnn_cell.MultiRNNCell(
@@ -104,9 +104,8 @@ class RNN(object):
         self.predict = tf.cast(tf.argmax(self.softmax_out, axis=1), tf.int32)
         correct_prediction = tf.equal(self.predict, labels)
         self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-        if self.training:
-            self.train_step = tf.train.AdamOptimizer(
-                self.learning_rate).minimize(self.loss)
+        self.train_step = tf.train.AdamOptimizer(
+            self.learning_rate).minimize(self.loss)
 
     def train(self, save=False, model_name="rnn", test_output=True, test_seed=None, with_delim=True):
         losses_ = []
@@ -161,6 +160,7 @@ class RNN(object):
             f.write(u''.join(string))
 
     def test(self, sess):
+        self.training = False
         accuracy = 0
         for step, data in enumerate(self.data.batch(train_data=False)):
             x, y, _ = data
@@ -170,9 +170,11 @@ class RNN(object):
                 self.init_state: self.finish_state
             })[0]
         print "Test accuracy: {}".format(accuracy / (step + 1))
+        self.training = True
         return accuracy / (step + 1)
 
     def gen_text(self, sess, model_path=None, seed_input=None, with_delim=True, size=300):
+        self.training = False
         if not sess:
             sess = tf.Session()
             new_saver = tf.train.Saver()
@@ -187,8 +189,11 @@ class RNN(object):
                 prev_char = self.data.idx_to_vocab[char_in]
                 out = self.predict_(
                     np.array([char_in]).reshape((1, 1)), sess, False)[0]
-            return u''.join(text).encode('utf-8').strip()
-        return self._gen_text_from_seed(sess, seed_input, size)
+            t = u''.join(text).encode('utf-8').strip()
+        else:
+            t = self._gen_text_from_seed(sess, seed_input, size)
+        self.training = True
+        return t
 
     def _gen_text_from_seed(self, sess, seed_input, size):
         if not seed_input:
