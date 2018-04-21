@@ -65,7 +65,7 @@ class RNN(object):
             single_cell = tf.nn.rnn_cell.LSTMCell(
                 self.cell_size, forget_bias=1.0)
             # Use dropout only for training
-            if self.dropout:
+            if self.dropout and self.training:
                 single_cell = tf.contrib.rnn.DropoutWrapper(
                     single_cell, output_keep_prob=self.dropout)
             multi_cell = tf.nn.rnn_cell.MultiRNNCell([single_cell for _ in xrange(self.num_layers)],
