@@ -58,4 +58,4 @@ Options:
 
 [Rashmi Dwarka](https://github.com/dwaraka-rashmi)    - Character-level Recurrent Neural Network and Sequence to Sequence Implementation
 
-[Tirthraj Parmar](https://github.com/Tirthraj93)  - Character-level n-gram language model
+[Tirthraj Parmar](https://github.com/Tirthraj93)  - Character-level n-gram language model implementation
