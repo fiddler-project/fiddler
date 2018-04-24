@@ -1,3 +1,4 @@
+from __future__ import division
 import tensorflow as tf
 import numpy as np
 
@@ -5,11 +6,13 @@ import numpy as np
 import re
 import io
 import math
+import tqdm
 
 
 class Dataset(object):
 
-    def __init__(self, path, batch_size=100, num_steps=5, with_delim=True, train_percent=0.8):
+    def __init__(self, path, batch_size=100, num_steps=5,
+                 with_delim=True, train_percent=0.8):
         """ `path` is processed file's path """
         print("Loading dataset...")
         with io.open(path, encoding='utf-8', mode='r') as f:
@@ -31,6 +34,7 @@ class Dataset(object):
         self.data = []
         pad_seq = [self.vocab_to_idx[pad]] * (num_steps - 2)
         for t in tunes:
+            # t = t.split("\n")[-1]
             self.data += [self.vocab_to_idx[start_symbol]] + \
                          [self.vocab_to_idx[c] for c in t] + \
                          [self.vocab_to_idx[end_symbol]]
@@ -52,8 +56,8 @@ class Dataset(object):
         x = data[::2, :][:, ::-1]
         y = data[1::2, :]
 
-        epoch_size = ((rows / 2) // self.batch_size)
-
+        epoch_size = int((rows / 2) // self.batch_size)
+        print "Total epochs", epoch_size
         for i in xrange(epoch_size):
             start_idx = i * self.batch_size
             remaining_rows = (rows // 2) - (i * self.batch_size)
@@ -64,18 +68,60 @@ class Dataset(object):
                 (go_col, y[start_idx: start_idx + self.batch_size, :]))
             yield x_ret, y_ret, epoch_size
 
+    def batch_(self, train_data=True):
+        """ Returns a new batch """
+        if train_data:
+            raw_data = np.array(self.data[:self.train_limit])
+        else:
+            raw_data = np.array(self.data[self.train_limit + 1:])
+        raw_data = np.array(self.data)
+        x, y = [], []
+        x_, y_ = np.array([]), np.array([])
+        count, stride = 0, 5
+        ctr = tqdm.tqdm()
+        while True:
+            start_idx = count * stride
+            out_idx = start_idx + self.num_steps
+            start_end = start_idx + self.num_steps
+            out_end = out_idx + self.num_steps
+            if out_end > len(self.data) or start_end > len(self.data):
+                break
+            if len(x_) == 0:
+                x_ = x_ = np.hstack(
+                    (x_, self.data[start_idx: start_idx + self.num_steps]))
+            if len(y_) == 0:
+                y_ = np.hstack(
+                    (y_, self.data[out_idx: out_idx + self.num_steps]))
+            else:
+                x_ = np.vstack(
+                    (x_, self.data[start_idx: start_idx + self.num_steps]))
+                y_ = np.vstack(
+                    (y_, self.data[out_idx: out_idx + self.num_steps]))
+            if len(x_) == self.batch_size:
+                go_col = np.repeat(
+                    [self.vocab_to_idx['<GO>']], self.batch_size).reshape(self.batch_size, 1)
+                y_ = np.hstack((go_col, y_))
+                yield x_, y_, 1
+                x_, y_ = np.array([]), np.array([])
+            count += 1
+            ctr.update(1)
+        ctr.close()
 
-data_path = "data/abc_transposed.txt"
-d = Dataset(data_path, num_steps=10)
 
+steps = 10
 # build TF graph
-x_seq_length = 10
-y_seq_length = 10
-epochs = 1
-batch_size = 100
-nodes = 100
-embed_size = 100
-bidirectional = True
+x_seq_length = steps
+y_seq_length = steps
+batch_size = 1000
+nodes = 300
+embed_size = 80
+bidirectional = False
+
+# Load data
+# data_path = "data/abc_transposed.txt"
+data_path = "data/abc_transposed.txt"
+d = Dataset(data_path, num_steps=steps, batch_size=batch_size)
+
 
 tf.reset_default_graph()
 sess = tf.InteractiveSession()
@@ -116,7 +162,6 @@ with tf.variable_scope("encoding") as encoding_scope:
 
 
 with tf.variable_scope("decoding") as decoding_scope:
-
     if not bidirectional:
         lstm_dec = tf.contrib.rnn.LSTMCell(nodes)
     else:
@@ -139,33 +184,41 @@ with tf.name_scope("optimization"):
 import time
 import tqdm
 sess.run(tf.global_variables_initializer())
-epochs = 5
+epochs = 3
 for epoch_i in range(epochs):
+    losses, accuracies = 0.0, 0.0
     start_time = time.time()
-    for batch_i, (source_batch, target_batch, _) in tqdm.tqdm(enumerate(d.batch())):
+    for batch_i, (source_batch, target_batch, _) in tqdm.tqdm(enumerate(d.batch_())):
         _, batch_loss, batch_logits = sess.run([optimizer, loss, logits],
                                                feed_dict={inputs: source_batch,
                                                           outputs: target_batch[:, :-1],
                                                           targets: target_batch[:, 1:]})
         dec_input = target_batch[:, :-1]
-        accuracy = np.mean(batch_logits.argmax(axis=-1) == target_batch[:, 1:])
-    print('Epoch {:3} Loss: {:>6.3f} Accuracy: {:>6.4f} Epoch duration: {:>6.3f}s'.format(epoch_i, batch_loss,
-                                                                                          accuracy, time.time() - start_time))
+        accuracies += np.mean(batch_logits.argmax(axis=-1)
+                              == target_batch[:, 1:])
+        losses += batch_loss
+    print('Epoch {:3} Loss: {:>6.3f} Accuracy: {:>6.4f} Epoch duration: {:>6.3f}s'.format(
+        epoch_i, losses/(batch_i + 1), accuracies/(batch_i + 1), time.time() - start_time))
 
-# Prediction
-pad_seq = [d.vocab_to_idx['<PAD>']] * 3
-warm_up = "M:6/8\n"
-i = [d.vocab_to_idx['<s>']] + [d.vocab_to_idx[l] for l in warm_up]
-source_batch = np.array([i])
-dec_input = np.array([d.vocab_to_idx["<GO>"]]).reshape(1, 1)
-s = []
-prediction = [None]
-while prediction[0] != d.vocab_to_idx['</s>']:
-    batch_logits = sess.run(y,
-                            feed_dict={inputs: source_batch,
-                                       outputs: dec_input})
-    prediction = np.array(
-        [np.random.choice(range(d.vocab_size), p=batch_logits[:, -1][0])])
-    s += [d.idx_to_vocab[prediction[0]]]
-    dec_input = np.hstack([dec_input, prediction[:, None]])
-print warm_up + "".join(s)
+
+def prediction():
+    pad_seq = [d.vocab_to_idx['<PAD>']] * 3
+    warm_up = "M:"
+    i = [d.vocab_to_idx['<s>']] + [d.vocab_to_idx[l] for l in warm_up]
+    source_batch = np.array([i])
+    dec_input = np.array([d.vocab_to_idx["<GO>"]]).reshape(1, 1)
+    s = []
+    prediction = [None]
+    while prediction[0] != d.vocab_to_idx['</s>']:
+        batch_logits = sess.run(y,
+                                feed_dict={inputs: source_batch,
+                                           outputs: dec_input})
+        prediction = np.array(
+            [np.random.choice(range(d.vocab_size), p=batch_logits[:, -1][0])])
+        s += [d.idx_to_vocab[prediction[0]]]
+        dec_input = np.hstack([dec_input, prediction[:, None]])
+    print warm_up + "".join(s)
+
+
+for i in xrange(3):
+    prediction()
