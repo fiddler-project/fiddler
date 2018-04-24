@@ -132,4 +132,4 @@ def plott():
 # text_test('data/test/tinyshakespeare.txt', 6)
 # k_experiment('data/abc_all.txt', 10)
 # n_experiment('data/abc_all.txt', 'add-k', 0.1)
-plott()
+# plott()
