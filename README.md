@@ -1,6 +1,8 @@
-# fiddler
-An AI Irish music composer
+# Fiddler: An AI Music Composer
 
+The goal of the project is to model music compositions by capturing temporal dependencies in classical music composi- tions and eventually generate novel music compositions from the learned model. We use approximately 24000 music com- positions transcribed in ABC notation. We implement count- based n-gram language model, use its results as a baseline for recurrent neural network based methods and assess their abil- ity to generate structurally coherent, human-pleasing music. We achieved test accuracy of 69.78% for char-RNN and 73% for seq2seq model with both methods generating valid music compositions.
+
+Detailed experiments, methodlogies and results are discussed in `paper.pdf`.
 
 ## Install
 
@@ -11,9 +13,9 @@ In order to install `fiddler` run the following command:
  This will install `fiddler` as a command line tool.
  
 
- # Commands
+ ## Commands
 
- ## Training Recurrent Neural Network
+ ### Training Recurrent Neural Network
  
     fiddler train_rnn [options]
 
@@ -42,7 +44,7 @@ Options:
  
  If `fiddler` is not installed as command-line tool, you can use the same command using `python src/cli.py` with same arguments.
 
- ## Generate music using a trained RNN model
+ ### Generate music using a trained RNN model
 
 ```
 Usage: fiddler generate [OPTIONS]
